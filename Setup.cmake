@@ -1,0 +1,8 @@
+INCLUDE(${OE_CURRENT_EXTENSION_DIR}/FindCairo.cmake)
+
+IF (CAIRO_FOUND)
+   INCLUDE_DIRECTORIES(${CAIRO_INCLUDE_DIR})
+ELSE (CAIRO_FOUND)
+   MESSAGE ("WARNING: Could not find Cairo - depending targets will be disabled.")
+   SET(OE_MISSING_LIBS "${OE_MISSING_LIBS}, Cairo")
+ENDIF(CAIRO_FOUND)

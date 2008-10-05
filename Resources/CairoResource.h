@@ -70,7 +70,7 @@ public:
 	unsigned char* GetData();
     ColorFormat GetColorFormat();
     
-    cairo_t* CairoResource::GetContext();
+    cairo_t* GetContext();
     void RebindTexture();
 };
 

@@ -15,13 +15,19 @@
 #include <cairo.h>
 #include <Resources/CairoResource.h>
 
-using namespace OpenEngine::Resources;
-
 namespace OpenEngine {
 namespace Utils {
 
+/**
+ * Utility to ease creating cairo textures with text.
+ *
+ * @class CairoTextTool CairoTextTool.h Utils/CairoTextTool.h
+ */
 class CairoTextTool {
 public:
+    /**
+     * Text alignment.
+     */
     enum Alignment { LEFT, RIGHT, CENTER };
 
     CairoTextTool() {
@@ -33,17 +39,13 @@ public:
     }
     ~CairoTextTool() {}
     
-    void SetFont(std::string fontName, unsigned int fontSize) {
-        this->fontName = fontName; 
-        this->fontSize = fontSize;
-    }
     void SetFontName(std::string name) { fontName = name; }
     void SetFontSize(unsigned int size) { fontSize = size; }
     void SetAlignment(Alignment alignment) { this->alignment = alignment; }
     void Shadows(bool enabled) { this->shadows = enabled; }
     void SetColor(Math::Vector<4,float> color) { this->color = color; }
 
-    void DrawText(std::string, CairoResourcePtr resource);
+    void DrawText(std::string, Resources::CairoResourcePtr resource);
 
 protected:
     std::string fontName;

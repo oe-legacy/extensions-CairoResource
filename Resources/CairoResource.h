@@ -26,14 +26,20 @@ namespace Resources {
 class CairoResource;
 
 /**
- * Texture resource smart pointer.
+ * Cairo resource smart pointer.
  */
 typedef boost::shared_ptr<CairoResource> CairoResourcePtr;
 
 /**
- * TGA image resource.
+ * Cairo Image Resource.
+ * Integrates a cairo surface with the OpenEngine resource system.
+ * The surface is represented as a texture resource and the \a
+ * ChangedEvent is used to signal when the surface has been changed by
+ * calling the \a RebindTexture method.
+ * The raw context for the cairo surface can be accessed by
+ * \a GetContext.
  *
- * @class TGAResource TGAResource.h Resources/TGAResource.h
+ * @class CairoResource CairoResource.h Resources/CairoResource.h
  */
 class CairoResource : public ITextureResource {
 private:

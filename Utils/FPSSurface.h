@@ -68,9 +68,9 @@ public:
 	unsigned int   GetHeight() { return surface->GetHeight(); }
 	unsigned int   GetDepth()  { return surface->GetDepth(); }
 	unsigned char* GetData()   { return surface->GetData(); }
-    ColorFormat GetColorFormat() { return surface->GetColorFormat(); }
+    Resources::ColorFormat GetColorFormat() { return surface->GetColorFormat(); }
     // Rewire changed event to the surface
-    IEvent<TextureChangedEventArg>& ChangedEvent() {
+    Core::IEvent<Resources::TextureChangedEventArg>& ChangedEvent() {
         return surface->ChangedEvent();
     }
 };

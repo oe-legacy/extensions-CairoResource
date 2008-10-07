@@ -16,7 +16,7 @@ namespace Utils {
 FPSSurface::FPSSurface()
     : frames(0)
     , interval(1000000)
-    , surface(CairoResource::Create(256,32))
+    , surface(Resources::CairoResource::Create(256,32))
 {
     text.SetFontSize(32);
     text.DrawText("Calculating FPS", surface);

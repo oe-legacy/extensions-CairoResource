@@ -27,6 +27,7 @@ public:
     CairoTextTool() {
         fontName = "Monaco";
         fontSize = 12;
+        alignment = LEFT;
         shadows = false;
         color = Math::Vector<4,float>(1);
     }
@@ -36,6 +37,8 @@ public:
         this->fontName = fontName; 
         this->fontSize = fontSize;
     }
+    void SetFontName(std::string name) { fontName = name; }
+    void SetFontSize(unsigned int size) { fontSize = size; }
     void SetAlignment(Alignment alignment) { this->alignment = alignment; }
     void Shadows(bool enabled) { this->shadows = enabled; }
     void SetColor(Math::Vector<4,float> color) { this->color = color; }

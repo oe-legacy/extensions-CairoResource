@@ -19,7 +19,10 @@ namespace Resources {
 using OpenEngine::Utils::Convert;
 
 CairoResource::CairoResource(unsigned int width, unsigned int height) : id(0), data(NULL) {
-
+    if (width & (width - 1))
+        throw Exception("Invalid width: "+Convert::ToString(width)+", must be a power of two.");
+    if (height & (height - 1))
+        throw Exception("Invalid height: "+Convert::ToString(height)+", must be a power of two.");
 	unsigned int channels = 4;
     depth = channels * 8;
 	unsigned char* buffer = (unsigned char*)calloc

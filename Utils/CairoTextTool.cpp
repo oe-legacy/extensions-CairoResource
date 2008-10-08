@@ -57,7 +57,8 @@ void CairoTextTool::DrawText(std::string text, CairoResourcePtr resource) {
         throw Core::Exception("unsupported alignment on cairo resource");
 
     // draw the text 
-    cairo_set_source_rgba (context, 0.0, 0.0, 0.5,.9); // BGR
+    Math::Vector<4,float> c = color;
+    cairo_set_source_rgba (context, c[0], c[1], c[2], c[3]); 
     cairo_show_text (context, text.c_str());
     
     //@todo check if the cairo tools should be reset

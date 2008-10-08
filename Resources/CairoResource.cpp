@@ -23,6 +23,7 @@ CairoResource::CairoResource(unsigned int width, unsigned int height) : id(0), d
         throw Exception("Invalid width: "+Convert::ToString(width)+", must be a power of two.");
     if (height & (height - 1))
         throw Exception("Invalid height: "+Convert::ToString(height)+", must be a power of two.");
+
 	unsigned int channels = 4;
     depth = channels * 8;
 	unsigned char* buffer = (unsigned char*)calloc
@@ -47,6 +48,7 @@ CairoResourcePtr CairoResource::Create(unsigned int width,
 }
 
 CairoResource::~CairoResource() {
+    //cairo_surface_destroy(surface);
     Unload();
 }
 
@@ -82,9 +84,9 @@ unsigned char* CairoResource::GetData() {
 
 ColorFormat CairoResource::GetColorFormat() {
     if (depth==32)
-        return RGBA;
+        return BGRA;
     else if (depth==24)
-        return RGB;
+        return BGR;
     else if (depth==8)
         return LUMINANCE;
     else

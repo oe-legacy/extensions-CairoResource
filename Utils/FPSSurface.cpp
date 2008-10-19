@@ -15,11 +15,12 @@ namespace Utils {
 
 FPSSurface::FPSSurface()
     : frames(0)
-    , interval(1000000)
+    , interval(2000000)
     , surface(Resources::CairoResource::Create(256,32))
 {
     text.SetFontSize(32);
-    text.DrawText("Calculating FPS", surface);
+    fpsString = "FPS:?.?";
+    text.DrawText(fpsString, surface);
     surface->RebindTexture();
     timer.Start();
 }
@@ -39,10 +40,18 @@ void FPSSurface::Handle(Core::ProcessEventArg arg) {
     unsigned int elapsed = timer.GetElapsedTime().AsInt();
     if (elapsed > interval) {
         double d = (double) frames * 1000000 / elapsed;
-        text.DrawText(Convert::ToString(d), surface);
+
+
+	char timestring[255];
+	sprintf(timestring, "FPS:%.1f",d);
+	std::string time = Convert::ToString(timestring);
+
+	if (fpsString != time) {
+	    text.DrawText(time, surface);
+	    surface->RebindTexture();
+	}
         frames = 0;
         timer.Reset();
-        surface->RebindTexture();
     }
 }
 

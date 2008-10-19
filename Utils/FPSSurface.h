@@ -49,8 +49,8 @@ class FPSSurface
     : public Core::IListener<Core::ProcessEventArg>
     , public Resources::ITextureResource {
 private:
-    unsigned int frames;
-    unsigned int interval;
+    unsigned int frames, interval;
+    std::string fpsString;
     Resources::CairoResourcePtr surface;
     CairoTextTool text;
     Timer timer;

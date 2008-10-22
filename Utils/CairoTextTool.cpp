@@ -8,7 +8,9 @@ namespace Utils {
 using namespace OpenEngine::Resources;
 
 void CairoTextTool::DrawText(std::string text, CairoResourcePtr resource) {
-    cairo_t* context = resource->GetContext();
+
+    cairo_t* context = cairo_create(resource->GetSurface());
+	cairo_save(context);
 
     // clear the context
     cairo_set_operator (context, CAIRO_OPERATOR_CLEAR);
@@ -60,8 +62,9 @@ void CairoTextTool::DrawText(std::string text, CairoResourcePtr resource) {
     Math::Vector<4,float> c = color;
     cairo_set_source_rgba (context, c[0], c[1], c[2], c[3]); 
     cairo_show_text (context, text.c_str());
-    
-    //@todo check if the cairo tools should be reset
+
+	cairo_restore(context);
+    cairo_destroy(context);
 }
 
 } // NS Utils

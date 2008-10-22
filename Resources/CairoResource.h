@@ -49,7 +49,7 @@ private:
     unsigned int height;        //!< texture height
     unsigned int depth;         //!< texture depth/bits
 
-	cairo_t* context;
+    cairo_surface_t* surface;
     boost::weak_ptr<CairoResource> weak_this;
     CairoResource(unsigned int width, unsigned int height);
 
@@ -76,7 +76,7 @@ public:
 	unsigned char* GetData();
     ColorFormat GetColorFormat();
     
-    cairo_t* GetContext();
+    cairo_surface_t* GetSurface();
     void RebindTexture();
 };
 

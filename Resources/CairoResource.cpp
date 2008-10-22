@@ -30,11 +30,10 @@ CairoResource::CairoResource(unsigned int width, unsigned int height) : id(0), d
         (channels * width * height, sizeof(unsigned char));
 
 	// TODO : check for memory fail
-	cairo_surface_t* surface = cairo_image_surface_create_for_data
+    surface = cairo_image_surface_create_for_data
         (buffer, CAIRO_FORMAT_ARGB32, width, height, channels * width);
 	// TODO : check for errors
 
-	this->context = cairo_create(surface);
 	this->data = cairo_image_surface_get_data(surface);
 	this->width = cairo_image_surface_get_width(surface);
 	this->height = cairo_image_surface_get_height(surface);
@@ -93,8 +92,8 @@ ColorFormat CairoResource::GetColorFormat() {
         throw Exception("unknown color depth");
 }
 
-cairo_t* CairoResource::GetContext() {
-    return context;
+cairo_surface_t* CairoResource::GetSurface() {
+    return surface;
 }
 
 void CairoResource::RebindTexture() {

@@ -10,6 +10,8 @@
 #include <Utils/FPSSurface.h>
 #include <Utils/Convert.h>
 
+#include <cstdio>
+
 namespace OpenEngine {
 namespace Utils {
 

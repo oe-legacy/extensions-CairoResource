@@ -51,8 +51,6 @@ private:
     unsigned int depth;         //!< texture depth/bits
 
     cairo_surface_t* surface;
-    boost::weak_ptr<CairoResource> weak_this;
-    CairoResource(unsigned int width, unsigned int height);
 
 public:
     //    friend class boost::serialization::access;
@@ -61,6 +59,7 @@ public:
         ar & boost::serialization::base_object<ITextureResource>(*this);
     }
 
+    CairoResource(unsigned int width, unsigned int height);
     static CairoResourcePtr Create(unsigned int width, unsigned int height);    
     ~CairoResource();
 

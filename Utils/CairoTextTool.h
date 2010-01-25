@@ -46,6 +46,7 @@ public:
     void SetColor(Math::Vector<4,float> color) { this->color = color; }
 
     void DrawText(std::string, Resources::CairoResourcePtr resource);
+    void DrawText(std::string, Resources::CairoResource* resource);
 
 protected:
     std::string fontName;

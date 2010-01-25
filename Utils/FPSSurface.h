@@ -47,11 +47,10 @@ typedef boost::shared_ptr<FPSSurface> FPSSurfacePtr;
  */
 class FPSSurface
     : public Core::IListener<Core::ProcessEventArg>
-    , public Resources::ITextureResource {
+    , public Resources::CairoResource {
 private:
     unsigned int frames, interval;
     std::string fpsString;
-    Resources::CairoResourcePtr surface;
     CairoTextTool text;
     Timer timer;
     FPSSurface();
@@ -59,20 +58,6 @@ public:
     static FPSSurfacePtr Create();
     virtual ~FPSSurface();
     void Handle(Core::ProcessEventArg arg);
-    // Texture methods. forward to surface
-    void Load() { surface->Load(); }
-    void Unload() { surface->Unload(); }
-    int GetID() { return surface->GetID(); }
-	void SetID(int id) { surface->SetID(id); }
-    unsigned int   GetWidth()  { return surface->GetWidth(); }
-	unsigned int   GetHeight() { return surface->GetHeight(); }
-	unsigned int   GetDepth()  { return surface->GetDepth(); }
-	unsigned char* GetData()   { return surface->GetData(); }
-    Resources::ColorFormat GetColorFormat() { return surface->GetColorFormat(); }
-    // Rewire changed event to the surface
-    Core::IEvent<Resources::TextureChangedEventArg>& ChangedEvent() {
-        return surface->ChangedEvent();
-    }
 };
 
 } // NS Utils

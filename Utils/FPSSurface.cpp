@@ -16,14 +16,14 @@ namespace OpenEngine {
 namespace Utils {
 
 FPSSurface::FPSSurface()
-    : frames(0)
+    : CairoResource(256,32)
+    , frames(0)
     , interval(2000000)
-    , surface(Resources::CairoResource::Create(256,32))
 {
     text.SetFontSize(32);
     fpsString = "FPS:?.?";
-    text.DrawText(fpsString, surface);
-    surface->RebindTexture();
+    text.DrawText(fpsString, this);
+    RebindTexture();
     timer.Start();
 }
 
@@ -49,8 +49,8 @@ void FPSSurface::Handle(Core::ProcessEventArg arg) {
 	std::string time = Convert::ToString(timestring);
 
 	if (fpsString != time) {
-	    text.DrawText(time, surface);
-	    surface->RebindTexture();
+	    text.DrawText(time, this);
+	    RebindTexture();
 	}
         frames = 0;
         timer.Reset();

@@ -8,6 +8,9 @@ namespace Utils {
 using namespace OpenEngine::Resources;
 
 void CairoTextTool::DrawText(std::string text, CairoResourcePtr resource) {
+    DrawText(text, resource.get());
+}
+void CairoTextTool::DrawText(std::string text, CairoResource* resource) {
 
     cairo_t* context = cairo_create(resource->GetSurface());
 	cairo_save(context);

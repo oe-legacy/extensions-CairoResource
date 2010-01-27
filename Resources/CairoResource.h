@@ -44,11 +44,6 @@ typedef boost::shared_ptr<CairoResource> CairoResourcePtr;
  */
 class CairoResource : public ITextureResource {
 private:
-    int id;                     //!< material identifier
-    unsigned char* data;        //!< binary material data
-    unsigned int width;         //!< texture width
-    unsigned int height;        //!< texture height
-
     cairo_surface_t* surface;
 
 public:
@@ -64,16 +59,7 @@ public:
 
     // resource methods
     void Load();
-    void Unload();
 
-    // texture resource methods
-	int GetID();
-	void SetID(int id);   
-    unsigned int GetWidth();
-	unsigned int GetHeight();
-	unsigned char* GetData();
-    ColorFormat GetColorFormat();
-    
     cairo_surface_t* GetSurface();
     void RebindTexture();
 };

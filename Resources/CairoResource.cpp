@@ -18,13 +18,15 @@ namespace Resources {
 
 using OpenEngine::Utils::Convert;
 
-CairoResource::CairoResource(unsigned int width, unsigned int height) : id(0), data(NULL) {
+CairoResource::CairoResource(unsigned int width, unsigned int height) 
+    : ITextureResource() {
     if (width & (width - 1))
         throw Exception("Invalid width: "+Convert::ToString(width)+", must be a power of two.");
     if (height & (height - 1))
         throw Exception("Invalid height: "+Convert::ToString(height)+", must be a power of two.");
 
 	this->channels = 4;
+    this->format = RGBA;
 	unsigned char* buffer = (unsigned char*)calloc
         (this->channels * width * height, sizeof(unsigned char));
 
@@ -45,45 +47,10 @@ CairoResourcePtr CairoResource::Create(unsigned int width,
 
 CairoResource::~CairoResource() {
     //cairo_surface_destroy(surface);
-    Unload();
+    this->Unload();
 }
 
 void CairoResource::Load() {
-}
-
-void CairoResource::Unload() {
-}
-
-int CairoResource::GetID() {
-    return id;
-}
-
-void CairoResource::SetID(int id) {
-    this->id = id;
-}
-
-unsigned int CairoResource::GetWidth() {
-    return width;
-}
-
-unsigned int CairoResource::GetHeight() {
-    return height;
-}
-
-
-unsigned char* CairoResource::GetData() {
-    return data;
-}
-
-ColorFormat CairoResource::GetColorFormat() {
-    if (this->channels == 4)
-        return RGBA;
-    else if (this->channels == 3)
-        return RGB;
-    else if (this->channels == 1)
-        return LUMINANCE;
-    else
-        throw Exception("unknown color format");
 }
 
 cairo_surface_t* CairoResource::GetSurface() {

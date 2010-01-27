@@ -24,10 +24,9 @@ CairoResource::CairoResource(unsigned int width, unsigned int height) : id(0), d
     if (height & (height - 1))
         throw Exception("Invalid height: "+Convert::ToString(height)+", must be a power of two.");
 
-	unsigned int channels = 4;
-    depth = channels * 8;
+	this->channels = 4;
 	unsigned char* buffer = (unsigned char*)calloc
-        (channels * width * height, sizeof(unsigned char));
+        (this->channels * width * height, sizeof(unsigned char));
 
 	// TODO : check for memory fail
     surface = cairo_image_surface_create_for_data
@@ -71,23 +70,20 @@ unsigned int CairoResource::GetHeight() {
     return height;
 }
 
-unsigned int CairoResource::GetDepth() {
-    return depth;
-}
 
 unsigned char* CairoResource::GetData() {
     return data;
 }
 
 ColorFormat CairoResource::GetColorFormat() {
-    if (depth==32)
-        return BGRA;
-    else if (depth==24)
-        return BGR;
-    else if (depth==8)
+    if (this->channels == 4)
+        return RGBA;
+    else if (this->channels == 3)
+        return RGB;
+    else if (this->channels == 1)
         return LUMINANCE;
     else
-        throw Exception("unknown color depth");
+        throw Exception("unknown color format");
 }
 
 cairo_surface_t* CairoResource::GetSurface() {

@@ -48,7 +48,6 @@ private:
     unsigned char* data;        //!< binary material data
     unsigned int width;         //!< texture width
     unsigned int height;        //!< texture height
-    unsigned int depth;         //!< texture depth/bits
 
     cairo_surface_t* surface;
 
@@ -72,7 +71,6 @@ public:
 	void SetID(int id);   
     unsigned int GetWidth();
 	unsigned int GetHeight();
-	unsigned int GetDepth();
 	unsigned char* GetData();
     ColorFormat GetColorFormat();
     

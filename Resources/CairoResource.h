@@ -43,17 +43,20 @@ typedef boost::shared_ptr<CairoResource> CairoResourcePtr;
  * @class CairoResource CairoResource.h Resources/CairoResource.h
  */
 class CairoResource : public ITextureResource {
-private:
+protected:
     cairo_surface_t* surface;
 
+    CairoResource(unsigned int width, unsigned int height);
+
 public:
+    ITextureResourcePtr weak_this;
+
     //    friend class boost::serialization::access;
     template<class Archive>
     void serialize(Archive& ar, const unsigned int version) {
         ar & boost::serialization::base_object<ITextureResource>(*this);
     }
 
-    CairoResource(unsigned int width, unsigned int height);
     static CairoResourcePtr Create(unsigned int width, unsigned int height);    
     ~CairoResource();
 

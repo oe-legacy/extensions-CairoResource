@@ -42,7 +42,9 @@ CairoResource::CairoResource(unsigned int width, unsigned int height)
 
 CairoResourcePtr CairoResource::Create(unsigned int width, 
                                        unsigned int height) {
-    return CairoResourcePtr(new CairoResource(width, height));
+    CairoResourcePtr ptr = CairoResourcePtr(new CairoResource(width, height));
+    ptr->weak_this = ptr;
+    return ptr;
 }
 
 CairoResource::~CairoResource() {
@@ -61,7 +63,7 @@ void CairoResource::RebindTexture() {
     ReverseVertecally(); //@todo: use blockcopy
 
     changedEvent
-        .Notify(TextureChangedEventArg(this));
+        .Notify(TextureChangedEventArg(this->weak_this));
 }
 
 } //NS Resources

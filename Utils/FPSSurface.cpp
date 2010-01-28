@@ -23,7 +23,6 @@ FPSSurface::FPSSurface()
     text.SetFontSize(32);
     fpsString = "FPS:?.?";
     text.DrawText(fpsString, this);
-    RebindTexture();
     timer.Start();
 }
 
@@ -34,7 +33,10 @@ FPSSurface::~FPSSurface() {
 FPSSurfacePtr FPSSurface::Create() {
     // we don't need to cache a weak_ptr here as changed event only
     // occur in `surface'
-    return FPSSurfacePtr(new FPSSurface());
+    FPSSurfacePtr ptr = FPSSurfacePtr(new FPSSurface());
+    ptr->weak_this = ptr;
+    ptr->RebindTexture();
+    return ptr;
 }
 
 void FPSSurface::Handle(Core::ProcessEventArg arg) {

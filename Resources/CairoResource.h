@@ -14,12 +14,8 @@
 #include <string>
 #include <cairo.h>
 
-#include <boost/serialization/base_object.hpp>
-#include <boost/serialization/export.hpp>
-#include <boost/serialization/split_member.hpp>
-#include <boost/serialization/extended_type_info.hpp>
-
-#include <boost/serialization/weak_ptr.hpp>
+#include <boost/weak_ptr.hpp>
+#include <boost/shared_ptr.hpp>
 
 namespace OpenEngine {
 namespace Resources {
@@ -54,7 +50,7 @@ public:
     //    friend class boost::serialization::access;
     template<class Archive>
     void serialize(Archive& ar, const unsigned int version) {
-        ar & boost::serialization::base_object<ITexture2D>(*this);
+        ar & boost::serialization::base_object<ITextureResource>(*this);
     }
 
     static CairoResourcePtr Create(unsigned int width, unsigned int height);    
@@ -70,6 +66,5 @@ public:
 } //NS Resources
 } //NS OpenEngine
 
-BOOST_CLASS_EXPORT(OpenEngine::Resources::CairoResource)
 
 #endif // _CAIRO_RESOURCE_H_

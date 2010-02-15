@@ -10,7 +10,7 @@
 #ifndef _CAIRO_RESOURCE_H_
 #define _CAIRO_RESOURCE_H_
 
-#include <Resources/ITextureResource.h>
+#include <Resources/Texture2D.h>
 #include <string>
 #include <cairo.h>
 
@@ -42,19 +42,19 @@ typedef boost::shared_ptr<CairoResource> CairoResourcePtr;
  *
  * @class CairoResource CairoResource.h Resources/CairoResource.h
  */
-class CairoResource : public ITextureResource {
+class CairoResource : public Texture2D<unsigned char> {
 protected:
     cairo_surface_t* surface;
 
     CairoResource(unsigned int width, unsigned int height);
 
 public:
-    ITextureResourcePtr weak_this;
+    ITexture2DPtr weak_this;
 
     //    friend class boost::serialization::access;
     template<class Archive>
     void serialize(Archive& ar, const unsigned int version) {
-        ar & boost::serialization::base_object<ITextureResource>(*this);
+        ar & boost::serialization::base_object<ITexture2D>(*this);
     }
 
     static CairoResourcePtr Create(unsigned int width, unsigned int height);    

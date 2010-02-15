@@ -13,7 +13,6 @@
 #ifndef _CAIRO_FONT_H_
 #define _CAIRO_FONT_H_
 
-#include <Resources/ITextureResource.h>
 #include <Resources/IFontResource.h>
 #include <Resources/IFontTextureResource.h>
 #include <Resources/IResourcePlugin.h>

@@ -19,7 +19,7 @@ namespace Resources {
 using OpenEngine::Utils::Convert;
 
 CairoResource::CairoResource(unsigned int width, unsigned int height) 
-    : ITextureResource() {
+    : Texture2D<unsigned char>() {
     if (width & (width - 1))
         throw Exception("Invalid width: "+Convert::ToString(width)+", must be a power of two.");
     if (height & (height - 1))
@@ -63,7 +63,7 @@ void CairoResource::RebindTexture() {
     ReverseVertecally(); //@todo: use blockcopy
 
     changedEvent
-        .Notify(TextureChangedEventArg(this->weak_this));
+        .Notify(Texture2DChangedEventArg(this->weak_this));
 }
 
 } //NS Resources

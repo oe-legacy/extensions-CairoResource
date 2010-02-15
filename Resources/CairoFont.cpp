@@ -13,7 +13,7 @@
 #include <Resources/CairoFont.h>
 #include <Resources/Exceptions.h>
 #include <Resources/IFontTextureResource.h>
-#include <Resources/ITextureResource.h>
+#include <Resources/ITexture2D.h>
 
 #include <Logging/Logger.h>
 
@@ -261,7 +261,7 @@ void CairoFont::CairoFontTexture::Clear(Vector<4,float> color) {
 
 void CairoFont::CairoFontTexture::FireChangedEvent(int x, int y, int w, int h) {
     changedEvent.
-        Notify(TextureChangedEventArg(ITextureResourcePtr(weak_this), x, y, w, h));
+        Notify(Texture2DChangedEventArg(ITexture2DPtr(weak_this), x, y, w, h));
 }
 
 } //NS Resources

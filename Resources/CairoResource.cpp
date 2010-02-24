@@ -38,6 +38,8 @@ CairoResource::CairoResource(unsigned int width, unsigned int height)
 	this->data = cairo_image_surface_get_data(surface);
 	this->width = cairo_image_surface_get_width(surface);
 	this->height = cairo_image_surface_get_height(surface);
+    this->compression = false;
+    this->mipmapping = false;
 }
 
 CairoResourcePtr CairoResource::Create(unsigned int width, 

@@ -47,12 +47,7 @@ protected:
 public:
     ITexture2DPtr weak_this;
 
-    //    friend class boost::serialization::access;
-    template<class Archive>
-    void serialize(Archive& ar, const unsigned int version) {
-        ar & boost::serialization::base_object<ITextureResource>(*this);
-    }
-
+   
     static CairoResourcePtr Create(unsigned int width, unsigned int height);    
     ~CairoResource();
 

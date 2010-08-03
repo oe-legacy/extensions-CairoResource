@@ -142,7 +142,8 @@ Vector<2,int> CairoFont::TextDim(string s) {
                             slant, weight);
     cairo_set_font_size (cr, ptsize);
     cairo_text_extents (cr, s.c_str(), &te);
-    Vector<2,int> dim(te.width-te.x_bearing, te.height-te.y_bearing);
+    Vector<2,int> dim((int)(te.width-te.x_bearing),
+		      (int)(te.height-te.y_bearing));
     return dim;
 }
 

@@ -30,7 +30,7 @@ void CairoTextTool::DrawText(std::string text, CairoResource* resource) {
     // get the the text dimensions
     cairo_text_extents_t extents;
     cairo_text_extents (context, text.c_str(), &extents);
-    unsigned int textWidth = extents.width + 2;
+    unsigned int textWidth = ((unsigned int)extents.width) + 2;
 
     int shadowoffset = 3;
     // draw the shadow

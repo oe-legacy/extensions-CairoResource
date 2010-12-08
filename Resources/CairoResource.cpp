@@ -30,10 +30,10 @@ CairoResource::CairoResource(unsigned int width, unsigned int height)
 	unsigned char* buffer = (unsigned char*)calloc
         (this->channels * width * height, sizeof(unsigned char));
 
-	// TODO : check for memory fail
+	//! @TODO : check for memory fail
     surface = cairo_image_surface_create_for_data
         (buffer, CAIRO_FORMAT_ARGB32, width, height, channels * width);
-	// TODO : check for errors
+	//! @TODO : check for errors
 
 	this->data = cairo_image_surface_get_data(surface);
 	this->width = cairo_image_surface_get_width(surface);

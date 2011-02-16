@@ -63,7 +63,8 @@ void CairoTextTool::DrawText(std::string text, CairoResource* resource) {
 
     // draw the text 
     Math::Vector<4,float> c = color;
-    cairo_set_source_rgba (context, c[0], c[1], c[2], c[3]); 
+    // @todo: why do this need to be BGRA to work properly?
+    cairo_set_source_rgba (context, c[2], c[1], c[0], c[3]); 
     cairo_show_text (context, text.c_str());
 
 	cairo_restore(context);

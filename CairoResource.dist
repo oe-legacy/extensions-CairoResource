@@ -1,6 +1,6 @@
 # source
-darcs /extensions/CairoResource http://openengine.dk/code/extensions/CairoResource
-darcs-dev /extensions/CairoResource fh.daimi.au.dk:/users/cgd/code/extensions/CairoResource
+git     /extensions/CairoResource git://github.com/oe-legacy/extensions-CairoResource.git
+git-dev /extensions/CairoResource git@github.com:oe-legacy/extensions-CairoResource.git
 
 # win lib
 win32 /libraries http://openengine.dk/data/libraries/cairo-win32.zip
